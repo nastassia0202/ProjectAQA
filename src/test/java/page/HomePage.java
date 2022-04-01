@@ -29,6 +29,4 @@ public class HomePage extends Form {
         getBrowser().getDriver().switchTo().frame(iframe.getElement());
         getElementFactory().getTextBox(By.xpath(XPATH_PRODUCT.concat("[" + serialNumberInTheList + "]")), "Open productPage").clickAndWait();
     }
-
-
 }

@@ -66,6 +66,7 @@ public class ProductPage extends Form {
         String minPrice = String.valueOf(prices.get(0)).replace(".", ",").concat("0 р.");
         String XPATH_BUTTON_ADD_TO_CART = "(//*[@class = 'offers-list__flex'][.//div[contains(text() ,'" + minPrice + "')]]//*[contains(@class, 'button-style_expletive')])[2]";
         getElementFactory().getLabel(By.xpath(XPATH_BUTTON_ADD_TO_CART), "Add to cart product with the min price").clickAndWait();
+//        getElementFactory().getButton(By.xpath("//*[contains(@class, 'product-recommended__sidebar-close')]"), "Exit").click();
         return minPrice;
     }
 
