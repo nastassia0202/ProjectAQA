@@ -16,6 +16,7 @@ public class ShoppingTests {
     ProductPage productPage = new ProductPage();
     CartMenuPage cartMenuPage = new CartMenuPage();
 
+
     @Test
     public void shoppingTest() throws InterruptedException {
         getBrowser().getDriver().manage().window().maximize();

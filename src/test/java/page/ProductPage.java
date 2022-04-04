@@ -87,7 +87,7 @@ public class ProductPage extends Form {
     public void openCartPage() {
         if (checkLabelToAddingProductToCart()==false)
         btnGoingToCartFromHomePage.clickAndWait();
-        else
+        else if (checkLabelToAddingProductToCart()==true)
             btnGoingToCartFromProductPage.clickAndWait();
     }
 
