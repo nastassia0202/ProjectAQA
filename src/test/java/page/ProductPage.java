@@ -6,6 +6,7 @@ import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import java.util.Collections;
 import java.util.List;
@@ -61,22 +62,37 @@ public class ProductPage extends Form {
         List<ITextBox> txtGetPrices = getElementFactory().findElements(By.xpath("//*[contains(@class, 'offers-list__description_nodecor')]"), ElementType.TEXTBOX);
         List<Double> prices = txtGetPrices
                 .stream()
-                .map(string -> Double.parseDouble(string.getText().replaceAll("р.", "").replace(",", ".").trim())).collect(Collectors.toList());
+                .map(string -> Double.parseDouble(string.getText().replaceAll("р.", "").replace(" ", "").replace(",", ".").trim())).collect(Collectors.toList());
         Collections.sort(prices);
         String minPrice = String.valueOf(prices.get(0)).replace(".", ",").concat("0 р.");
         String XPATH_BUTTON_ADD_TO_CART = "(//*[@class = 'offers-list__flex'][.//div[contains(text() ,'" + minPrice + "')]]//*[contains(@class, 'button-style_expletive')])[2]";
         getElementFactory().getLabel(By.xpath(XPATH_BUTTON_ADD_TO_CART), "Add to cart product with the min price").clickAndWait();
-//        getElementFactory().getButton(By.xpath("//*[contains(@class, 'product-recommended__sidebar-close')]"), "Exit").click();
         return minPrice;
+    }
+
+    private boolean checkLabelToAddingProductToCart() {
+        ILabel productAddingToCartMessage = getElementFactory().getLabel(By.xpath("//*[contains(@class, 'roduct-recommended__sidebar-overflow')]"), "Status massage");
+        if (productAddingToCartMessage.getElement().isDisplayed()) {
+            Assert.assertEquals(txtProductAddingToCArt.getText(), "Товар добавлен в корзину");
+//            getElementFactory().getButton(By.xpath("//*[contains(@class, 'product-recommended__sidebar-close')]"), "Exit").click();
+            return true;
+        }
+        return false;
+    }
+
+    private final IButton btnGoingToCartFromHomePage = getElementFactory().getButton(By.xpath("//*[contains(@class, 'auth-bar__item--cart')]"), "Going to Cart");
+    private final IButton btnGoingToCartFromProductPage = getElementFactory().getButton(By.xpath("//*[contains(@class, 'button-style_another button-style_base-alter')]"), "Going to Cart");
+
+
+    public void openCartPage() {
+        if (checkLabelToAddingProductToCart()==false)
+        btnGoingToCartFromHomePage.clickAndWait();
+        else
+            btnGoingToCartFromProductPage.clickAndWait();
     }
 
 //    public void addToCartProductWithFirstPrice() {
 //        getElementFactory().getLabel(By.xpath(XPATH_ADD_TO_CART_BUTTON.concat("[1]")), "Add to cart product with the first price")
 //                .clickAndWait();
 //    }
-//
-//    public void checkAddingProductToCart() {
-//        Assert.assertEquals(txtProductAddingToCArt.getText(), "Товар добавлен в корзину");
-//    }
-
 }

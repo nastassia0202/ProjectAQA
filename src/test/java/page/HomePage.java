@@ -22,10 +22,12 @@ public class HomePage extends Form {
         getBrowser().goTo("https://www.onliner.by");
     }
 
-    public void findProduct(String productName, String serialNumberInTheList) {
+    public void findProduct(String productName) {
         txtSearchBox.sendKeys(productName);
         txtSearchBox.submit();
+    }
 
+    public void getProductPageFromSearchList(String serialNumberInTheList) {
         getBrowser().getDriver().switchTo().frame(iframe.getElement());
         getElementFactory().getTextBox(By.xpath(XPATH_PRODUCT.concat("[" + serialNumberInTheList + "]")), "Open productPage").clickAndWait();
     }

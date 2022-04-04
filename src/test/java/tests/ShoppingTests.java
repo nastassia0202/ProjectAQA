@@ -8,19 +8,20 @@ import page.ProductPage;
 
 import static aquality.selenium.browser.AqualityServices.getBrowser;
 
-public class ShoppingTests{
+public class ShoppingTests {
 
-    private final String productTitle = "Смартфон Samsung Galaxy A52 SM-A525F/DS 4GB/128GB (черный)";
+    private final String productTitle = "Ноутбук Apple Macbook Pro 14\" M1 Pro 2021 MKGR3";
 
     HomePage homePage = new HomePage();
     ProductPage productPage = new ProductPage();
     CartMenuPage cartMenuPage = new CartMenuPage();
 
     @Test
-    public void shoppingTest(){
+    public void shoppingTest() throws InterruptedException {
         getBrowser().getDriver().manage().window().maximize();
         homePage.openHomePage();
-        homePage.findProduct(productTitle, "1");
+        homePage.findProduct(productTitle);
+        homePage.getProductPageFromSearchList("1");
 
         Assert.assertEquals(productPage.getProductTitle(), productTitle);
         productPage.isDisplayedDescriptionLabel();
@@ -28,9 +29,10 @@ public class ShoppingTests{
         productPage.showMorePrices();
 
         Assert.assertEquals(productPage.addToCartProductWithMinPrice(), price);
+        Thread.sleep(5000);
 
-        cartMenuPage.openCartPage();
-        cartMenuPage.deleteProductFromCart();
+        productPage.openCartPage();
+        cartMenuPage.deleteProductFromCart(productTitle);
         cartMenuPage.checkTheCartIsEmpty();
 
         getBrowser().getDriver().quit();
