@@ -12,7 +12,7 @@ public class HomePage extends Form {
     public final ITextBox txtSearchBox = getElementFactory().getTextBox(By.className("fast-search__input"), "Search");
 
     private ILabel iframe = getElementFactory().getLabel(By.cssSelector("#fast-search-modal iframe"), "SearchDialog");
-    private final String XPATH_PRODUCT = "(//a[contains(@class, 'product__title-link')])";
+    private String XPATH_PRODUCT = "(//a[contains(@class, 'product__title-link')])";
 
     public HomePage() {
         super(By.xpath("//*[contains(@class, 'search__input')]"), "Search");
@@ -29,6 +29,6 @@ public class HomePage extends Form {
 
     public void getProductPageFromSearchList(String serialNumberInTheList) {
         getBrowser().getDriver().switchTo().frame(iframe.getElement());
-        getElementFactory().getTextBox(By.xpath(XPATH_PRODUCT), "Open productPage").clickAndWait();
+        getElementFactory().getTextBox(By.xpath(XPATH_PRODUCT.concat("[" + serialNumberInTheList + "]")), "Open productPage").clickAndWait();
     }
 }

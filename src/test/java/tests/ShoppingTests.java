@@ -22,6 +22,7 @@ public class ShoppingTests {
         getBrowser().getDriver().manage().window().maximize();
         homePage.openHomePage();
         homePage.findProduct(productTitle);
+        Thread.sleep(5000);
         homePage.getProductPageFromSearchList("1");
 
         Assert.assertEquals(productPage.getProductTitle(), productTitle);
