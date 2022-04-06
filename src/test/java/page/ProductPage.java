@@ -76,19 +76,19 @@ public class ProductPage extends Form {
             Assert.assertEquals(txtProductAddingToCArt.getText(), "Товар добавлен в корзину");
 //            getElementFactory().getButton(By.xpath("//*[contains(@class, 'product-recommended__sidebar-close')]"), "Exit").click();
             return true;
-        }
-        return false;
+        }else
+            return false;
     }
 
     private final IButton btnGoingToCartFromHomePage = getElementFactory().getButton(By.xpath("//*[contains(@class, 'auth-bar__item--cart')]"), "Going to Cart");
-    private final IButton btnGoingToCartFromProductPage = getElementFactory().getButton(By.xpath("//*[contains(@class, 'button-style_another button-style_base-alter')]"), "Going to Cart");
+    private final IButton btnGoingToCartFromLabel = getElementFactory().getButton(By.xpath("//*[contains(@class, 'button-style_another button-style_base-alter')]"), "Going to Cart");
 
 
     public void openCartPage() {
-        if (checkLabelToAddingProductToCart()==false)
-        btnGoingToCartFromHomePage.clickAndWait();
-        else if (checkLabelToAddingProductToCart()==true)
-            btnGoingToCartFromProductPage.clickAndWait();
+        if (checkLabelToAddingProductToCart() == true)
+            btnGoingToCartFromLabel.clickAndWait();
+        else
+            btnGoingToCartFromHomePage.clickAndWait();
     }
 
 //    public void addToCartProductWithFirstPrice() {

@@ -5,12 +5,11 @@ import org.testng.annotations.Test;
 import page.CartMenuPage;
 import page.HomePage;
 import page.ProductPage;
-
 import static aquality.selenium.browser.AqualityServices.getBrowser;
 
-public class ShoppingTests {
+public class ShoppingTests{
 
-    private final String productTitle = "Ноутбук Apple Macbook Pro 14\" M1 Pro 2021 MKGR3";
+    private final String productTitle = "Смартфон Samsung Galaxy A52 SM-A525F/DS 4GB/128GB (черный)";
 
     HomePage homePage = new HomePage();
     ProductPage productPage = new ProductPage();
