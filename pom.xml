@@ -79,6 +79,31 @@
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
         <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>2.20</version>-->
+<!--                <configuration>-->
+<!--                    <testFailureIgnore>${surefireArgLine} -Dfile.encoding=UTF-8</testFailureIgnore>-->
+<!--                    <reuseForks>false</reuseForks>-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>src/test/resources/TestSuite.xml</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
+<!--                    <argLine>-->
+<!--                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"-->
+<!--                    </argLine>-->
+<!--                </configuration>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.aspectj</groupId>-->
+<!--                        <artifactId>aspectjweaver</artifactId>-->
+<!--                        <version>1.9.6</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
+
+
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
