@@ -7,9 +7,6 @@ import aquality.selenium.elements.interfaces.IElementFactory;
 import aquality.selenium.elements.interfaces.ILabel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Defines base class for any UI form.
@@ -46,7 +43,6 @@ public abstract class Form {
      *
      * @return name.
      */
-
     public String getName() {
         return name;
     }

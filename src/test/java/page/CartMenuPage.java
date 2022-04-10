@@ -22,12 +22,11 @@ public class CartMenuPage extends Form {
         IButton btnToRemove = getElementFactory().getButton(By.xpath(XPATH_PRODUCT_LABEl.concat(XPATH_btnToRemoveProduct)), "Remove Product From Cart");
         btnToRemove.clickAndWait();
 
-        IButton goToCart = getElementFactory().getButton(By.xpath("//a[text()='Закрыть']"), "Go to empty cart");
+        IButton goToCart = getElementFactory().getButton(By.xpath("//*[text()='Закрыть']"), "Go to empty cart");
         goToCart.clickAndWait();
     }
 
     public void checkTheCartIsEmpty() {
         Assert.assertEquals(txtCartMessage.getText(), "Ваша корзина пуста");
     }
-
 }

@@ -60,18 +60,20 @@ public class ProductPage extends Form {
 
     public String addToCartProductWithMinPrice() {
         List<ITextBox> txtGetPrices = getElementFactory().findElements(By.xpath("//*[contains(@class, 'offers-list__description_nodecor')]"), ElementType.TEXTBOX);
+
         List<Double> prices = txtGetPrices
                 .stream()
-                .map(string -> Double.parseDouble(string.getText().replaceAll("р.", "").replace(" ", "").replace(",", ".").trim())).collect(Collectors.toList());
+                .map(string -> Double.parseDouble(string.getText().replaceAll("р.", "").replace(",", ".").trim())).collect(Collectors.toList());
         Collections.sort(prices);
-        String minPrice = String.valueOf(prices.get(0)).replace(".", ",").concat("0 р.");
-        String XPATH_BUTTON_ADD_TO_CART = "(//*[@class = 'offers-list__flex'][.//div[contains(text() ,'" + minPrice + "')]]//*[contains(@class, 'button-style_expletive')])[2]";
+        String minPrice = String.valueOf(prices.get(0));
+        String changedMinPrice = minPrice.replace(".", ",").concat("0 р.");
+        String XPATH_BUTTON_ADD_TO_CART = "(//*[@class = 'offers-list__flex'][.//div[contains(text() ,'" + changedMinPrice  + "')]]//*[contains(@class, 'button-style_expletive')])[2]";
         getElementFactory().getLabel(By.xpath(XPATH_BUTTON_ADD_TO_CART), "Add to cart product with the min price").clickAndWait();
-        return minPrice;
+        return changedMinPrice;
     }
 
     private boolean checkLabelToAddingProductToCart() {
-        ILabel productAddingToCartMessage = getElementFactory().getLabel(By.xpath("//*[contains(@class, 'roduct-recommended__sidebar-overflow')]"), "Status massage");
+        ILabel productAddingToCartMessage = getElementFactory().getLabel(By.xpath("//*[contains(@class, 'product-recommended__sidebar-overflow')]"), "Status massage");
         if (productAddingToCartMessage.getElement().isDisplayed()) {
             Assert.assertEquals(txtProductAddingToCArt.getText(), "Товар добавлен в корзину");
 //            getElementFactory().getButton(By.xpath("//*[contains(@class, 'product-recommended__sidebar-close')]"), "Exit").click();
