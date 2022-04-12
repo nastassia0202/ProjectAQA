@@ -3,7 +3,7 @@
 <suite name="Demo Test Suite" verbose="1">
     <test name="Use cases tests" parallel="methods">
         <classes>
-            <class name="tests.ShoppingTests"/>
+            <class name="tests.OnlinerShoppingTests"/>
         </classes>
     </test>
 </suite>

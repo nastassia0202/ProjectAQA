@@ -1,4 +1,4 @@
-package page;
+package pagesOnliner;
 
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.interfaces.IButton;
@@ -63,7 +63,7 @@ public class ProductPage extends Form {
 
         List<Double> prices = txtGetPrices
                 .stream()
-                .map(string -> Double.parseDouble(string.getText().replaceAll("р.", "").replace(",", ".").trim())).collect(Collectors.toList());
+                .map(string -> Double.parseDouble(string.getText().replaceAll("р.", "").replace(" ", "").replace(",", ".").trim())).collect(Collectors.toList());
         Collections.sort(prices);
         String minPrice = String.valueOf(prices.get(0));
         String changedMinPrice = minPrice.replace(".", ",").concat("0 р.");

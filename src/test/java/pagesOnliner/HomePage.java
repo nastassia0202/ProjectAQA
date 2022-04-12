@@ -1,4 +1,4 @@
-package page;
+package pagesOnliner;
 
 import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.ITextBox;

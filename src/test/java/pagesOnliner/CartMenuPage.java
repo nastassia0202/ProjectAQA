@@ -1,6 +1,7 @@
-package page;
+package pagesOnliner;
 
 import aquality.selenium.elements.interfaces.IButton;
+import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
@@ -17,7 +18,8 @@ public class CartMenuPage extends Form {
 
     public void deleteProductFromCart(String productTitle) {
         String XPATH_PRODUCT_LABEl = "//*[contains(@class, 'cart-form__offers-item_secondary')][.//*[contains(text(), '" + productTitle + "')]]";
-        getElementFactory().getLabel(By.xpath(XPATH_PRODUCT_LABEl), "").getMouseActions().moveMouseToElement();
+        ILabel productLabel = getElementFactory().getLabel(By.xpath(XPATH_PRODUCT_LABEl), "");
+        productLabel.getMouseActions().moveMouseToElement();
 
         IButton btnToRemove = getElementFactory().getButton(By.xpath(XPATH_PRODUCT_LABEl.concat(XPATH_btnToRemoveProduct)), "Remove Product From Cart");
         btnToRemove.clickAndWait();
