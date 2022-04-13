@@ -67,19 +67,22 @@ public class ProductPage extends Form {
         Collections.sort(prices);
         String minPrice = String.valueOf(prices.get(0));
         String changedMinPrice = minPrice.replace(".", ",").concat("0 р.");
-        String XPATH_BUTTON_ADD_TO_CART = "(//*[@class = 'offers-list__flex'][.//div[contains(text() ,'" + changedMinPrice  + "')]]//*[contains(@class, 'button-style_expletive')])[2]";
+        String XPATH_BUTTON_ADD_TO_CART = "(//*[@class = 'offers-list__flex'][.//div[contains(text() ,'" + changedMinPrice + "')]]//*[contains(@class, 'button-style_expletive')])[2]";
+        getElementFactory().getLabel(By.xpath(XPATH_BUTTON_ADD_TO_CART), "Add to cart product with the min price").getJsActions().scrollIntoView();
         getElementFactory().getLabel(By.xpath(XPATH_BUTTON_ADD_TO_CART), "Add to cart product with the min price").clickAndWait();
         return changedMinPrice;
     }
 
     private boolean checkLabelToAddingProductToCart() {
         ILabel productAddingToCartMessage = getElementFactory().getLabel(By.xpath("//*[contains(@class, 'product-recommended__sidebar-overflow')]"), "Status massage");
-        if (productAddingToCartMessage.getElement().isDisplayed()) {
+
+        if (productAddingToCartMessage.getElement().isDisplayed() == false) {
+            return false;
+        } else {
             Assert.assertEquals(txtProductAddingToCArt.getText(), "Товар добавлен в корзину");
 //            getElementFactory().getButton(By.xpath("//*[contains(@class, 'product-recommended__sidebar-close')]"), "Exit").click();
             return true;
-        }else
-            return false;
+        }
     }
 
     private final IButton btnGoingToCartFromHomePage = getElementFactory().getButton(By.xpath("//*[contains(@class, 'auth-bar__item--cart')]"), "Going to Cart");
@@ -87,9 +90,9 @@ public class ProductPage extends Form {
 
 
     public void openCartPage() {
-        if (checkLabelToAddingProductToCart() == true)
-            btnGoingToCartFromLabel.clickAndWait();
-        else
+//        if (checkLabelToAddingProductToCart() == true)
+//            btnGoingToCartFromLabel.clickAndWait();
+//        else
             btnGoingToCartFromHomePage.clickAndWait();
     }
 

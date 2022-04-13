@@ -31,7 +31,7 @@ public class RelaxTests {
         try {
             Assert.assertEquals(actualAddress, searchPage.addressOnThePage());
             Assert.assertEquals(actualPhone, searchPage.phoneNumberOnThePage());
-//            Assert.assertTrue(actualWorkingHours.equals(searchPage.workingHoursOnThePage()), "Working hours don't match!");
+            Assert.assertTrue(actualWorkingHours.equals(searchPage.workingHoursOnThePage()));
         }finally {
             getBrowser().getDriver().quit();
         }
