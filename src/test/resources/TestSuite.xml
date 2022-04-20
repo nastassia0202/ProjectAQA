@@ -4,6 +4,7 @@
     <test name="Use cases tests" parallel="methods">
         <classes>
             <class name="tests.OnlinerShoppingTests"/>
+            <class name="tests.RelaxTests"></class>
         </classes>
     </test>
 </suite>

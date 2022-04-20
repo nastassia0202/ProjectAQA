@@ -90,10 +90,10 @@ public class ProductPage extends Form {
 
 
     public void openCartPage() {
-//        if (checkLabelToAddingProductToCart() == true)
-//            btnGoingToCartFromLabel.clickAndWait();
+        if (checkLabelToAddingProductToCart() == true)
+            btnGoingToCartFromLabel.clickAndWait();
 //        else
-            btnGoingToCartFromHomePage.clickAndWait();
+//            btnGoingToCartFromHomePage.clickAndWait();
     }
 
 //    public void addToCartProductWithFirstPrice() {

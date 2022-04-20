@@ -1,6 +1,12 @@
 package Email;
 
 import java.util.Scanner;
+//1   --  "(^#[A-F0-9]{6})$"
+//2   --
+//3
+//4
+//5
+//6
 
 
 public class RegEx {
