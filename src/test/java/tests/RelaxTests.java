@@ -1,16 +1,18 @@
 package tests;
 
 
+import aquality.selenium.elements.interfaces.ITextBox;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 import pagesRelax.CatalogPage;
 import pagesRelax.HomePage;
 import pagesRelax.SearchPage;
 import utils.ScreenshotExtension;
 
 import static aquality.selenium.browser.AqualityServices.getBrowser;
+import static aquality.selenium.browser.AqualityServices.getElementFactory;
 
 @ExtendWith(ScreenshotExtension.class)
 public class RelaxTests {
@@ -29,8 +31,8 @@ public class RelaxTests {
         homePage.openHomePage();
         homePage.inputInSearchBox(title);
         String actualAddress = homePage.getAddressInstitution(title, typeOfInstitution);
-//        String actualWorkingHours = "до 00:00";
-        String actualWorkingHours = homePage.getWorkingHours(title, typeOfInstitution);
+        String actualWorkingHours = "до 00:00";
+//        String actualWorkingHours = homePage.getWorkingHours(title, typeOfInstitution);
         String actualPhone = "+375 29 333-00-74";
 
         homePage.openPageWithExpectedResult(title, typeOfInstitution);
@@ -59,24 +61,33 @@ public class RelaxTests {
         Thread.sleep(1000);
         catalogPage.applyFilterAndShowResult();
 
-        catalogPage.getProductPageFromSearchList("1");
-        Assert.assertEquals(searchPage.titleDeliveryBox(), "Заказать еду");
-//        Assert.assertEquals(searchPage.checkFilterValue("Район"), "Заводской");
+        String productLink = catalogPage.getProductLinkFromSearchList("1");
+        Thread.sleep(1000);
 
-//        ITextBox hgj = getElementFactory().getTextBox(By.xpath("//*[@class=\"ContentBox__header --divided\"]/parent::*[@class='ContentBox__content']"), "");
-//        Assert.assertTrue(hgj.getElement().isDisplayed());
+        getBrowser().goTo(productLink);
+        Assert.assertEquals(searchPage.titleDeliveryBox(), "Заказать еду");
+        searchPage.showMoreParamsInContentBox();
+        Assert.assertTrue(searchPage.foo(searchPage.checkFilterValue("Район"), "Заводской"));
+        Assert.assertTrue(searchPage.foo(searchPage.checkFilterValue("Кухня"), "Белорусская"));
 
         Thread.sleep(3000);
         getBrowser().getDriver().quit();
     }
 
+
     @Test
-    public void posterValidationTest() {
+    public void posterValidationTest() throws InterruptedException {
         getBrowser().getDriver().manage().window().maximize();
         homePage.openHomePage();
         homePage.selectMenuCategory("Афиша, кино");
 
+        String productLink = catalogPage.getProductLinkFromSearchListAfisha("1");
+        Thread.sleep(1000);
 
+        getBrowser().goTo(productLink);
+
+        ITextBox hgjg = getElementFactory().getTextBox(By.xpath("//*[contains(@class, \"js-feedbacks b-feedbacks\")]"), "");
+        Assert.assertTrue(hgjg.getElement().isDisplayed());
         getBrowser().getDriver().quit();
     }
 }

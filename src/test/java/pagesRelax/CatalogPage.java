@@ -57,8 +57,16 @@ public class CatalogPage extends Form {
         btnFilterShow.clickAndWait();
     }
 
-    public void getProductPageFromSearchList(String serialNumberInTheList) {
-        String XPATH_PRODUCT = "(//*[contains(@class, \"Place__headerLink Place__title\")])";
-        getElementFactory().getTextBox(By.xpath(XPATH_PRODUCT.concat("[" + serialNumberInTheList + "]")), "Open productPage").clickAndWait();
+    public String getProductLinkFromSearchListAfisha(String serialNumberInTheList) {
+        String XPATH_PRODUCT = "(//*[@class='b-afisha_blocks-strap_item_lnk_img'])";
+        String linkPageOfTheFirstProduct = getElementFactory().getTextBox(By.xpath(XPATH_PRODUCT.concat("[" + serialNumberInTheList + "]").concat("/child::*[1]")), "Open productPage").getAttribute("href");
+        return linkPageOfTheFirstProduct;
+    }
+
+    public String getProductLinkFromSearchList(String serialNumberInTheList) {
+        String XPATH_PRODUCT = "(//*[contains(@class, 'Place__headerLink')])";
+        String linkPageOfTheFirstProduct = getElementFactory().getTextBox(By.xpath(XPATH_PRODUCT.concat("[" + serialNumberInTheList + "]")), "Open productPage").getAttribute("href");
+        return linkPageOfTheFirstProduct;
     }
 }
+//(//*[@class='b-afisha_blocks-strap_item_lnk_img'])[2]
