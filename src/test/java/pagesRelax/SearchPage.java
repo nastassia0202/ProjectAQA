@@ -82,6 +82,7 @@ public class SearchPage extends Form {
                 return true;
             }
         }
+
         return false;
     }
 
