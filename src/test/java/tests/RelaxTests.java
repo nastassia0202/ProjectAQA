@@ -31,8 +31,8 @@ public class RelaxTests {
         homePage.openHomePage();
         homePage.inputInSearchBox(title);
         String actualAddress = homePage.getAddressInstitution(title, typeOfInstitution);
-        String actualWorkingHours = "до 00:00";
-//        String actualWorkingHours = homePage.getWorkingHours(title, typeOfInstitution);
+//        String actualWorkingHours = "до 00:00";
+        String actualWorkingHours = homePage.getWorkingHours(title, typeOfInstitution);
         String actualPhone = "+375 29 333-00-74";
 
         homePage.openPageWithExpectedResult(title, typeOfInstitution);
@@ -81,13 +81,13 @@ public class RelaxTests {
         homePage.openHomePage();
         homePage.selectMenuCategory("Афиша, кино");
 
-        String productLink = catalogPage.getProductLinkFromSearchListAfisha("1");
+        String productLink = catalogPage.getProductLinkFromSearchListAfisha("2");
         Thread.sleep(1000);
 
         getBrowser().goTo(productLink);
 
-        ITextBox hgjg = getElementFactory().getTextBox(By.xpath("//*[contains(@class, \"js-feedbacks b-feedbacks\")]"), "");
-        Assert.assertTrue(hgjg.getElement().isDisplayed());
+        ITextBox feedbacksIcon = getElementFactory().getTextBox(By.xpath("//*[contains(@class, \"js-feedbacks b-feedbacks\")]"), "");
+        Assert.assertTrue(feedbacksIcon.getElement().isDisplayed());
         getBrowser().getDriver().quit();
     }
 }

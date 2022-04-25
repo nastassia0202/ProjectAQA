@@ -60,9 +60,10 @@ public class SearchPage extends Form {
         return title;
     }
 
-    public void showMoreParamsInContentBox(){
-        ITextBox txt = getElementFactory().getTextBox(By.xpath("//*[contains(@class, 'ContentBox__footer --divided')]"), "");
-        txt.getMouseActions().moveMouseToElement();
+    //*[contains(@class, 'ContentBox__footer --divided')]
+    public void showMoreParamsInContentBox() throws InterruptedException {
+        ITextBox txt = getElementFactory().getTextBox(By.xpath("//*[contains(@class, 'ContentBox Features')]//*[text()='Показать ещё']"), "");
+
         txt.clickAndWait();
     }
 
@@ -82,7 +83,6 @@ public class SearchPage extends Form {
                 return true;
             }
         }
-
         return false;
     }
 
